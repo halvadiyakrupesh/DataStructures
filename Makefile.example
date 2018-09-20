@@ -1,0 +1,2 @@
+krupesh:
+	g++ /home/krupesh/DataStructures/ArrayList/ArrayList.cpp -o build/ArrayList
