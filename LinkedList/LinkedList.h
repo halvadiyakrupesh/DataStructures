@@ -23,13 +23,14 @@ class LinkedList{
             ~LinkedList();
             void add(int value);
             bool isEmpty();
-            void remove();
-            void set();
-            void get();
-            void size();
-            void insert();
+            void remove(int index);
+            void set(int index, int value);
+            int get(int index);
+            int size();
+            void insert(int index, int value);
             void clear();
             void print();
+            friend std::ostream& operator<<(std::ostream& out, LinkedList& list);
 
 };
 
