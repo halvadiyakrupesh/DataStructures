@@ -10,6 +10,7 @@ struct Listnode {
     Listnode(int d =0, Listnode* n = NULL){
       data = d;
       next = n;
+      std::cout << "Listnode construtor is called new node created" << '\n';
     }
 };
 

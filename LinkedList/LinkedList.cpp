@@ -8,6 +8,7 @@ LinkedList::LinkedList(){
 
 LinkedList::~LinkedList(){
         std::cout << "I was in destructor" << std::endl;
+        clear();
 }
 
 void LinkedList::remove(int index){
@@ -26,6 +27,7 @@ void LinkedList::remove(int index){
                         current->next =  current->next->next; //removing the mapping of the pointer
                 }
                 delete trash; //garbage collection avoiding memory leak
+                std::cout << "removed successfully" << '\n';
         }
         else{
                 std::cout << "Array index out of bound exception, index -> " << index << std::endl;
@@ -33,58 +35,76 @@ void LinkedList::remove(int index){
 }
 
 void LinkedList::set(int index, int value){
-        Listnode* current = front;
-        // iterating where we have to set the given value
-        for (int i = 0; i < index; i++) {
-                current = current->next;
-        }
-        //store the data here now so it will insert
-        current->data = value;
-}
+        if(index >= 0 && index < this->size() ) {
 
-int LinkedList::get(int index){
-        Listnode* current = front;
-        for (int i = 0; i < index; i++) {
-                current = current->next;
+                Listnode* current = front;
+                // iterating where we have to set the given value
+                for (int i = 0; i < index; i++) {
+                        current = current->next;
+                }
+                //store the data here now so it will insert
+                current->data = value;
+        }else {
+                std::cout << "Array index out of bound exception cannot SET, index -> " << index << std::endl;
         }
-        //store the data here now so it will insert
-        return current->data;
+}
+int LinkedList::get(int index){
+        if(index >= 0 && index < this->size() ) {
+
+                Listnode* current = front;
+                for (int i = 0; i < index; i++) {
+                        current = current->next;
+                }
+                //store the data here now so it will insert
+                return current->data;
+        }else{
+                std::cout << "Array index out of bound exception cannot GET, index -> " << index << std::endl;
+                return 0; // It should not be ZERO but I cant set it it NULL, find options if any
+        }
 
 }
 
 void LinkedList::insert(int index, int value){
-        if (index == 0) {
-                Listnode* oldFront = front;
-                front = new Listnode(value);
-                front->next = oldFront;
-        }else{
-                Listnode* current = front;
-                for (int i = 0; i < index-1; i++) {
-                        if (index > this->size()) {
-                                std::cout << "index out of bound" << '\n';
+        if(index >= 0 && index < this->size() ) {
+                if (index == 0) {
+                        Listnode* oldFront = front;
+                        front = new Listnode(value);
+                        front->next = oldFront;
+                }else{
+                        Listnode* current = front;
+                        for (int i = 0; i < index-1; i++) {
+                                current = current->next;
                         }
-                        current = current->next;
+                        //store the data here now so it will insert
+                        Listnode* temp = new Listnode(value);
+                        temp->next = current->next; // XXX
+                        current->next =  temp;
                 }
-                //store the data here now so it will insert
-                Listnode* temp = new Listnode(value);
-                temp->next = current->next; // XXX
-                current->next =  temp;
+        }
+        else{
+                std::cout << "Array index out of bound exception, index -> " << index << std::endl;
         }
 }
 
 void LinkedList::clear(){
 
-
+        while (!isEmpty()) {
+                remove(0);
+        }
 }
 
 int LinkedList::size(){
         int count = 0;
-        Listnode* current = front;
-        while (current->next != NULL) {
-                count++;
-                current = current->next;
+        if (front != NULL) {
+                Listnode* current = front;
+                while (current->next != NULL) {
+                        count++;
+                        current = current->next;
+                }
+                return count + 1;
+        }else{
+                return 0;
         }
-        return count + 1;
 }
 
 void LinkedList::add(int value){
@@ -126,8 +146,11 @@ void LinkedList::print(){
                 }
         }
 }
-// int main() {
-//   LinkedList x;
-//   x.add();
-//   return 0;
-// }
+
+bool LinkedList::isEmpty(){
+        if (front == NULL) {
+                return true;
+        }else{
+                return false;
+        }
+}
