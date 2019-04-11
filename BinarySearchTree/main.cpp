@@ -12,15 +12,17 @@ int main() {
 
         BinarySearchTree tree;
         // BinaryTree tree (node);
+        tree.add(7);
         tree.add(4);
         tree.add(9);
-        tree.add(7);
         tree.add(2);
+        tree.add(1);
         tree.add(8);
         tree.add(5);
         tree.add(3);
 
         std::cout << "CONTAINS HERE: ==> " << std::boolalpha << tree.contains(1) << '\n';
+        std::cout << "MINIMUM VALUE IS " << tree.getMin() << std::endl;
         tree.printSideways();
 
 

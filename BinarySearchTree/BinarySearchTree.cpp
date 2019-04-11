@@ -89,3 +89,18 @@ void BinarySearchTree::addHelper(BinaryTreeNode*& nodePointer, int value){
 
    ==========================================*/
 }
+
+int BinarySearchTree::getMin(){
+        if (root == NULL) {
+                std::cout << "Get out of here no tree found" << '\n';
+        }else{
+                return getMinHelper(root);
+        }
+}
+int BinarySearchTree::getMinHelper(BinaryTreeNode* nodePointer){
+        if (nodePointer->left != NULL) {
+                getMinHelper(nodePointer->left);
+        }else{
+                return nodePointer->data;
+        }
+}
