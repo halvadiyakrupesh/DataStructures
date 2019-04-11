@@ -13,9 +13,16 @@ EXECUTABLE_LINKEDLIST = LinkedList-cli
 $(EXECUTABLE_LINKEDLIST):
 	g++ $(OBJECTS_LINKEDLIST) -o build/$@
 
-#LinkedList-cli
+#BinaryTree-cli
 SOURCES_BINARYTREE = /home/krupesh/DataStructures/BinaryTree/main.cpp
 OBJECTS_BINARYTREE = $(SOURCES_BINARYTREE:.cpp = .o)
 EXECUTABLE_BINARYTREE = BinaryTree-cli
 $(EXECUTABLE_BINARYTREE):
 	g++ $(OBJECTS_BINARYTREE) -o build/$@
+
+#BinarySearchTree-cli
+SOURCES_BINARYSEARCHTREE = /home/krupesh/DataStructures/BinarySearchTree/main.cpp
+OBJECTS_BINARYSEARCHTREE = $(SOURCES_BINARYSEARCHTREE:.cpp = .o)
+EXECUTABLE_BINARYSEARCHTREE = BinarySearchTree-cli
+$(EXECUTABLE_BINARYSEARCHTREE):
+	g++ $(OBJECTS_BINARYSEARCHTREE) -o build/$@
