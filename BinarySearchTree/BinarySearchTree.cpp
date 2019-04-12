@@ -104,3 +104,50 @@ int BinarySearchTree::getMinHelper(BinaryTreeNode* nodePointer){
                 return nodePointer->data;
         }
 }
+
+void BinarySearchTree::remove(int value){
+        if (root == NULL) {
+                std::cout << "Get out of here no tree found" << '\n';
+        }else{
+                std::cout << "root is " << root << "  " << value << '\n';
+                removeHelper(root, value);
+        }
+}
+void BinarySearchTree::removeHelper(BinaryTreeNode*& treePointer, int value){
+        if (treePointer == NULL) {
+                std::cout << "nothing to remove" << '\n';
+        }else if (treePointer->data > value) {
+                removeHelper(treePointer->left, value);
+        }else if (treePointer->data < value) {
+                removeHelper(treePointer->right, value);
+        }else if (treePointer->data == value) {
+                BinaryTreeNode* trash = NULL;
+                //case 1: l&R both are NULL
+                if (treePointer->left == NULL && treePointer->right == NULL ) {
+                        std::cout << "I am going to delete myself" << '\n';
+                        trash = treePointer;
+                        treePointer = NULL;
+                }else
+                //case 2: l are NULL and R has value
+                if (treePointer->left == NULL) {
+                        std::cout << "I dont have children now I am going to replace with " <<treePointer->right->data << '\n';
+                        trash = treePointer;
+                        treePointer = treePointer->right;
+                }else
+                //case 3: r are NULL and l has value
+                if (treePointer->right == NULL) {
+                        trash = treePointer;
+                        treePointer = treePointer->left;
+                }
+                // //case 4: l & r has value
+                else{
+                        int newDataValue = getMinHelper(treePointer->right);
+                        std::cout << "minimum value needs  to be replaced is " << newDataValue << '\n';
+                        treePointer->data = newDataValue;
+                        removeHelper( treePointer->right, newDataValue );   // XXX
+                }
+                if (trash != NULL) {
+                        delete trash;
+                }
+        }
+}

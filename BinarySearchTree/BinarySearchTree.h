@@ -26,6 +26,7 @@ bool contains(BinaryTreeNode*,int);
 void printSidewaysHelper(BinaryTreeNode*,std::string);
 void addHelper(BinaryTreeNode*&, int value);
 int getMinHelper(BinaryTreeNode*);
+void removeHelper(BinaryTreeNode*&, int value);
 
 
 public:
@@ -39,9 +40,9 @@ bool contains(int);
 void printSideways();
 void add(int value);
 int getMin();
+void remove(int value);
 };
 //isEmpty
-//remove
 
 
 #endif
