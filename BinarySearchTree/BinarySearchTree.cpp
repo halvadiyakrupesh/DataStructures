@@ -6,7 +6,12 @@ BinarySearchTree::BinarySearchTree(){
 }
 
 BinarySearchTree::~BinarySearchTree(){
-        root = NULL;
+        // root = NULL;
+        // std::cout << "======== calling destructor ============" << '\n';
+        // printSideways();
+        std::cout << "======== calling destructor ============" << '\n';
+        fireTree(root);
+        // printSideways();
 }
 
 void BinarySearchTree::print(){
@@ -149,5 +154,15 @@ void BinarySearchTree::removeHelper(BinaryTreeNode*& treePointer, int value){
                 if (trash != NULL) {
                         delete trash;
                 }
+        }
+}
+
+void BinarySearchTree::fireTree(BinaryTreeNode*& nodePointer){
+        if (nodePointer !=NULL) {
+                fireTree(nodePointer->left);
+                fireTree(nodePointer->right);
+                // std::cout << "nodePointer " << nodePointer->data << '\n';
+                nodePointer = NULL;
+                delete nodePointer;
         }
 }

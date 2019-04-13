@@ -27,6 +27,7 @@ void printSidewaysHelper(BinaryTreeNode*,std::string);
 void addHelper(BinaryTreeNode*&, int value);
 int getMinHelper(BinaryTreeNode*);
 void removeHelper(BinaryTreeNode*&, int value);
+void fireTree(BinaryTreeNode*&);
 
 
 public:

@@ -12,9 +12,9 @@ int main() {
 
         BinarySearchTree tree;
         // BinaryTree tree (node);
+        tree.add(3);
         tree.add(9);
         tree.add(5);
-        tree.add(3);
         tree.add(4);
         tree.add(1);
         tree.add(2);
@@ -34,8 +34,8 @@ int main() {
         std::cout << "CONTAINS HERE: ==> " << std::boolalpha << tree.contains(1) << '\n';
         std::cout << "MINIMUM VALUE IS " << tree.getMin() << std::endl;
         // tree.remove(17);
-        // tree.remove(55);
-        // tree.remove(29);
+        tree.remove(55);
+        tree.remove(29);
         tree.remove(9);
         // tree.remove(8);
         tree.printSideways();
